@@ -1,0 +1,4 @@
+total 8
+-rw-r--r--. 1 livas livas  0 Lis  1 10:48 output_3.txt
+-rw-r--r--. 1 livas livas 36 Lis  1 10:44 Zadatak_2.txt
+-rwxr-xr-x. 1 livas livas 43 Lis  1 10:47 Zadatak_3.sh
