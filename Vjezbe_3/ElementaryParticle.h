@@ -1,4 +1,6 @@
 #include<iostream>
+#include <cstdlib>     /* srand, rand */
+#include <ctime>
 
 using namespace std;
 
@@ -6,6 +8,7 @@ using namespace std;
 class ElementaryParticle{
 	public:
 		ElementaryParticle(string name, int mass, bool boson);
+		ElementaryParticle();
 
 		double p1;
 		double p2;
@@ -20,6 +23,8 @@ class ElementaryParticle{
 		void SetCetverovektor(double, double, double);
 
 		void setTransverseMomentum();
+
+		void bosonDecay(ElementaryParticle *a,ElementaryParticle *b);
 
 		void printInfo();
 		
