@@ -66,5 +66,18 @@ void ElementaryParticle::bosonDecay(ElementaryParticle *a,ElementaryParticle *b)
 		b->ime="b quark";
 		b->masa=4.18;
 	}
+	while(true){
+		r=(rand()%100)/100.0;
+		cout<<r<<endl;
+		if(r>0.3 && r<0.7){
+			a->SetCetverovektor(this->p1*r,this->p2*r,this->p3*r);
+			b->SetCetverovektor(this->p1*(1-r),this->p2*(1-r),this->p3*(1-r));
+			break;
+		}
+	}
+	a->printInfo();
+	a->setTransverseMomentum();
+	b->printInfo();
+	b->setTransverseMomentum();
 
 }

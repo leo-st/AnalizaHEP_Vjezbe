@@ -20,7 +20,6 @@ int main(){
 	ep2 = new ElementaryParticle();
 	ep3 = new ElementaryParticle();
 	ep1->printInfo();
-	ep2->printInfo();
 
 	ep1->SetCetverovektor(36.5,42.1,72.3);
 	ep1->setTransverseMomentum();
