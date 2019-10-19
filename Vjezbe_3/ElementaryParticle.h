@@ -22,7 +22,7 @@ class ElementaryParticle{
 
 		void SetCetverovektor(double, double, double);
 
-		void setTransverseMomentum();
+		double setTransverseMomentum();
 
 		void bosonDecay(ElementaryParticle *a,ElementaryParticle *b);
 
