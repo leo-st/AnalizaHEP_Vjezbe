@@ -28,4 +28,5 @@ public:
 	double DecayParticle2_TransMomentum;
 			
 	void readTextFile();
+	void convertTextToRootFile();
 };
