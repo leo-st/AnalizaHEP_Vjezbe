@@ -5,7 +5,8 @@ int main(){
 	a->Loop("ggH125");
 	a->Loop("qqZZ");
 	a->PlotMass();
-	a->FitMass();
-	a->PlotD();
+	//a->FitMass();
+	//a->PlotD();
+	a->FitMaxLike();
 	return 0;
 }

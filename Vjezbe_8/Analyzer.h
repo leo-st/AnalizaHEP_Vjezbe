@@ -1445,6 +1445,8 @@ public :
    virtual void 	PlotMass();
    virtual void	PlotD();
    virtual void FitMass();
+   virtual void FitMaxLike();
+
    TH1F *higgs ;
    TH2F *masa_kin_sig;
 	TH1F *qqZZ, *weight_histo;
@@ -1458,8 +1460,8 @@ public :
 #ifdef Analyzer_cxx
 Analyzer::Analyzer() : fChain(0) 
 {
-higgs = new TH1F("Higgs","",20,110,150);
-	qqZZ = new TH1F("qqZZ","",20,110,150);
+higgs = new TH1F("Higgs","",20,70,170);
+	qqZZ = new TH1F("qqZZ","",20,70,170);
 	higgs_signal = new TH1F("higgs_signal","",10,0,1);
 	qqZZ_poz = new TH1F("qqZZ_poz","",10,0,1);
 	masa_kin_sig=new TH2F("masa_kin","",50,70,170,10,0,1);

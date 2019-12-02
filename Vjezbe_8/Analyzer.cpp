@@ -7,6 +7,28 @@
 #include <TLorentzVector.h>
 #include <THStack.h>
 
+void Analyzer::FitMaxLike(){
+	TCanvas *c4 = new TCanvas("c4","c4");
+	TF1 *bw1 = new TF1("bw","([0]*[1])/((x*x - [2]*[2])*(x*x - [2]*[2]) + 0.25*[1]*[1])",110,150);
+	TF1 *q1 = new TF1("q","([0] + [1]*x + [2]*x*x)",110,150);
+	//A + Bx + Cx 2
+	TF1 *total1 = new TF1("total","(([0]*[1])/((x*x - [2]*[2])*(x*x - [2]*[2]) + 0.25*[1]*[1])+([3] + [4]*x + [5]*x*x))",110,150);
+	
+	bw1->SetParameters(70,200, 125.0);
+	q1->SetParameters(1,0.01,-0.0001);
+	total1->SetParameters(70,200, 125.0,1,0.01,-0.0001);
+	
+	
+	c4->cd(1);
+	higgs->Add(qqZZ);
+	higgs->GetXaxis()->SetRangeUser(70.0,170.0);
+
+	higgs->Fit(total1, "LW");
+	higgs->Draw("pe1x0");
+   	c4->SaveAs("higgs_fit_maxlike.pdf");
+}
+
+
 void Analyzer::FitMass(){
 	TCanvas *c2 = new TCanvas("c2","c2");
 	c2->Divide(2,1);
