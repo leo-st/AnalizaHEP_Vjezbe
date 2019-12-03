@@ -8,24 +8,35 @@
 #include <THStack.h>
 
 void Analyzer::FitMaxLike(){
-	TCanvas *c4 = new TCanvas("c4","c4");
-	TF1 *bw1 = new TF1("bw","([0]*[1])/((x*x - [2]*[2])*(x*x - [2]*[2]) + 0.25*[1]*[1])",110,150);
-	TF1 *q1 = new TF1("q","([0] + [1]*x + [2]*x*x)",110,150);
-	//A + Bx + Cx 2
-	TF1 *total1 = new TF1("total","(([0]*[1])/((x*x - [2]*[2])*(x*x - [2]*[2]) + 0.25*[1]*[1])+([3] + [4]*x + [5]*x*x))",110,150);
-	
-	bw1->SetParameters(70,200, 125.0);
-	q1->SetParameters(1,0.01,-0.0001);
-	total1->SetParameters(70,200, 125.0,1,0.01,-0.0001);
-	
-	
-	c4->cd(1);
-	higgs->Add(qqZZ);
-	higgs->GetXaxis()->SetRangeUser(70.0,170.0);
 
-	higgs->Fit(total1, "LW");
+	TCanvas *c2 = new TCanvas("c2","c2");
+	c2->Divide(2,1);
+	c2->cd(1);
+	
+	TF1 *bw = new TF1("bw","([0]*[1])/((x*x - [2]*[2])*(x*x - [2]*[2]) + 0.25*[1]*[1])",70,170);
+	TF1 *bw1 = new TF1("bw","([0]*[1])/((x*x - [2]*[2])*(x*x - [2]*[2]) + 0.25*[1]*[1])",70,170);
+	TF1 *q = new TF1("q","([0] + [1]*x + [2]*x*x)",70,170);
+	//A + Bx + Cx 2
+	TF1 *total = new TF1("total","(([0]*[1])/((x*x - [2]*[2])*(x*x - [2]*[2]) + 0.25*[1]*[1])+([3] + [4]*x + [5]*x*x)+([6]*[7])/((x*x - [8]*[8])*(x*x - [8]*[8]) + 0.25*[7]*[7]))",70,170);
+	
+	bw->SetParameters(70,200, 125.0);
+	bw1->SetParameters(131.36,193.89, -4245.74);
+	q->SetParameters(1,0.01,-0.0001);
+	total->SetParameters(70,200, 125.0,1,0.01,-0.0001,131.36,193.89, -4245.74);
+	
+	
+	bw->Draw();
+	q->Draw("same");
+	total->Draw("same");
+	
+	c2->cd(2);
+	higgs->Add(qqZZ);
+	higgs->GetXaxis()->SetRangeUser(70,170.0);
+
+	higgs->Fit(total, "l");
 	higgs->Draw("pe1x0");
-   	c4->SaveAs("higgs_fit_maxlike.pdf");
+	
+   	c2->SaveAs("higgs_fit_maxlike.pdf");
 }
 
 
