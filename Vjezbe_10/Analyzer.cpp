@@ -81,13 +81,22 @@ void Analyzer::Fit(){
    cout<<1.0/chisqe->GetMinimumX()<<endl;
    
    c1->SaveAs("opca1.pdf");
-	double theta, br=0.0, naz=0.0, greska=0.0, pod_kor=0.0, pod_kv=0.0;
+	double theta, br=0.0, naz=0.0, greska=0.0;
 	for(int i=0;i<5;i++){
 		br=br+(2.0*x[i]*y[i])/(ey[i]*ey[i]);
 		naz=naz+(2.0*x[i]*x[i])/(ey[i]*ey[i]);
 	}
 	theta=br/naz;
 	cout<<1.0/theta<<endl;
+	
+	double prvi_cl=0.0,drugi_cl=0.0, treci_cl=0.0;
+	for(int i=0;i<5;i++){
+		prvi_cl+= ((y[i]-theta*x[i])*(y[i]-theta*x[i]))/(ey[i]*ey[i]);
+		drugi_cl+= -2.0*x[i]*(y[i]-theta*x[i])/(ey[i]*ey[i]);
+		treci_cl+=2.0*x[i]*x[i]/(ey[i]*ey[i]);
+	}
+	greska=0.5*((TMath::Power(prvi_cl,-1.5)*(-0.5))*(TMath::Power(drugi_cl,2.0))+((TMath::Power(prvi_cl,-0.5))*treci_cl));
+	cout<<"Greska: "<<1.0/greska<<endl;
 
 //9.8 ± 1.0 , 21.2 ± 1.9 , 34.5 ± 3.1 , 39.9 ± 3.9 , 48.5 ± 5.1
 
