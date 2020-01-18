@@ -8,6 +8,7 @@ int main(){
 	a->Loop("background");
 	a->Loop("signal");
 	a->Draw();
+	//a->MVATraining("BDTG");
 
 return 0;
 }

@@ -1,16 +1,12 @@
-//////////////////////////////////////////////////////////
-// This class has been automatically generated on
-// Sun Jan 12 14:35:32 2020 by ROOT version 6.18/04
-// from TTree background/tree
-// found on file: /home/public/data/ElectronTraining/Electrons.root
-//////////////////////////////////////////////////////////
 #include <iostream>
 #include <TString.h>
 using namespace std;
 
 #ifndef Analyzer_h
 #define Analyzer_h
-
+#include "TMVA/Factory.h"
+#include            "TMVA/DataLoader.h"
+#include            "TMVA/Tools.h"
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
@@ -171,9 +167,24 @@ public :
    virtual Bool_t   Notify();
    virtual void     Show(Long64_t entry = -1);
    virtual void		Draw();
+   virtual void		MVATraining(TString metoda);
    TTree *tree;
    TH1F *h1_trans_mom_poz;
    TH1F *h1_trans_mom_sig;
+   TH1F *h1_scl_eta_sig;
+	TH1F *h1_scl_eta_poz;
+	TH1F *h1_ele_hadronicOverEm_sig ;
+	TH1F *h1_ele_hadronicOverEm_poz ;
+	TH1F *h1_ele_gsfchi2_sig ;
+	TH1F *h1_ele_gsfchi2_poz ;
+	TH1F *h1_ele_fbrem_sig ;
+	TH1F *h1_ele_fbrem_poz;
+	TH1F *h1_ele_ep_sig;
+	TH1F *h1_ele_ep_poz;
+	TH1F *h1_ele_eelepout_sig;
+	TH1F *h1_ele_eelepout_poz;
+	TH1F *h1_ele_pfChargedHadIso_sig;
+	TH1F *h1_ele_pfChargedHadIso_poz;
 };
 
 #endif
@@ -185,6 +196,20 @@ Analyzer::Analyzer() : fChain(0)
 // used to generate this class and read the Tree.
 	h1_trans_mom_poz = new TH1F("ele_pt_pozadina","",100,0,100);
 	h1_trans_mom_sig = new TH1F("ele_pt_signal","",100,0,100);
+	h1_scl_eta_sig = new TH1F("scl_eta_signal","",100,-5,5);
+	h1_scl_eta_poz = new TH1F("scl_eta_pozadina","",100,-5,5);
+	h1_ele_hadronicOverEm_sig = new TH1F("ele_hadronicOverEm_signal","",100,-1,3);
+	h1_ele_hadronicOverEm_poz = new TH1F("ele_hadronicOverEm_pozadina","",100,-1,3);
+	h1_ele_gsfchi2_sig = new TH1F("ele_gsfchi2_signal","",100,-1,30);
+	h1_ele_gsfchi2_poz = new TH1F("ele_gsfchi2_pozadina","",100,-1,30);
+	h1_ele_fbrem_sig = new TH1F("ele_fbrem_signal","",100,-2,2);
+	h1_ele_fbrem_poz = new TH1F("ele_fbrem_pozadina","",100,-2,2);
+	h1_ele_ep_sig = new TH1F("ele_ep_signal","",100,-1,20);
+	h1_ele_ep_poz = new TH1F("ele_ep_pozadina","",100,-1,20);
+	h1_ele_eelepout_sig = new TH1F("ele_eelepout_signal","",100,-1,15);
+	h1_ele_eelepout_poz = new TH1F("ele_eelepout_pozadina","",100,-1,15);
+	h1_ele_pfChargedHadIso_sig = new TH1F("ele_pfChargedHadIso_signal","",100,-1,50);
+	h1_ele_pfChargedHadIso_poz = new TH1F("ele_pfChargedHadIso_pozadina","",100,-1,50);
  
       
 }
