@@ -1,19 +1,11 @@
-//////////////////////////////////////////////////////////
-// This class has been automatically generated on
-// Tue Jan 14 10:50:54 2020 by ROOT version 6.18/04
-// from TTree Tree/Height of woman in ...
-// found on file: /home/public/data/Height/Height.root
-//////////////////////////////////////////////////////////
-
+#include <iostream>
+using namespace std;
 #ifndef Analyzer_h
 #define Analyzer_h
 
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
-#include <TH1F.h>
-#include <TRandom3.h>
-using namespace std;
 
 // Header file for the classes stored in the TTree if any.
 
@@ -38,9 +30,11 @@ public :
    virtual void     Init(TTree *tree);
    virtual void     Loop();
    virtual Bool_t   Notify();
-	double t_obs;
-	virtual void Theoretical();
    virtual void     Show(Long64_t entry = -1);
+   virtual void		Theoretical_t_gauss();
+	virtual void    ah_test(double sr, double gr);
+
+	double t_obs;
 };
 
 #endif
